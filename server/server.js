@@ -1,6 +1,8 @@
 require('./config/config');
 
-const express = require('express')
+const express = require('express');
+const mongoose = require('mongoose');
+
 const app = express()
  
 
@@ -15,7 +17,7 @@ app.get('/', function (req, res) {
  
 
 app.get('/usuarios', function (req, res) {
-    res.json('Get Usuarios');
+    res.json('Get Usuarios Local');
   });
 
 app.post('/usuarios', function (req, res) {
@@ -47,6 +49,17 @@ app.delete('/usuarios', function (req, res) {
     res.json('Delete Usuarios');
   });
 
+ 
+  mongoose.connect('mongodb://localhost:27017/my_banco',  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  }, (err, res) => {
+    if (err) throw err;
+
+    console.log('Base de datos ONLINE');
+  });  
  
   
 app.listen(process.env.PORT, () => {
