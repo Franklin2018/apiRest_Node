@@ -16,7 +16,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
         urlDB = 'mongodb://localhost:27017/my_banco';
         }
         else{
-            urlDB = 'mongodb+srv://admin:admin1234@clustertopics.vbma9.gcp.mongodb.net/my_banco?retryWrites=true&w=majority';
+            urlDB = process.env.MONGO_URL;
         }
 
 process.env.URLDB = urlDB;
