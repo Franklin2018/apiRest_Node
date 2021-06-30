@@ -27,6 +27,31 @@ app.get('/', function (req, res) {
          })
       })
   });
+
+  //obtener un usuario por su correo
+  app.get('/buscarusuario/:correo', function(req, res) {
+    let correo = req.params.correo;
+    //console.log(correo);
+    Usuario.find({ correo: correo }, function(err, usuarioBD) {
+        if (err) {
+          console.log(usuarioBD);
+            return res.status(400).json({
+                ok: false,
+                msj: 'No se encontró ningún usuario con ese correo',
+                err
+            });
+        } 
+        console.log(usuarioBD);
+            return res.json({
+                ok: true,
+                usuario: usuarioBD
+            });
+
+           
+        
+    })
+  });
+
   
   app.post('/usuarios', function (req, res) {
   

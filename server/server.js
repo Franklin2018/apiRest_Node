@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 
 const app = express()
  
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use( require('./routes/usuario'));
+//configuracion de rutas
+app.use( require('./routes/index'));
 
 mongoose.connect(process.env.URLDB,  {
     useNewUrlParser: true,
